@@ -12,7 +12,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
+	<link rel="preload" href="assets/css/main.css" as="style" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
+		as="style" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
 	<style>
 		.button.large.icon:before {
@@ -38,7 +41,8 @@
 				</ul>
 			</header>
 			<div class="content">
-				<span class="image fill" data-position="center"><img src="images/pic03.webp" alt="" /></span>
+				<span class="image fill" data-position="center"><img src="images/pic03.webp" alt=""
+						loading="eager" /></span>
 			</div>
 		</section>
 
@@ -64,11 +68,14 @@
 					<div class="content">
 						<div class="gallery">
 							<a href="images/nextDashDns3.webp" data-lightbox="nextdash" class="landscape"><img
-									src="images/nextDashDns3.webp" alt="Next Dash DNS Screenshot 3" /></a>
+									src="images/nextDashDns3.webp" alt="Next Dash DNS Screenshot 3"
+									loading="lazy" /></a>
 							<a href="images/nextDashDns1.webp" data-lightbox="nextdash" class="portrait"><img
-									src="images/nextDashDns1.webp" alt="Next Dash DNS Screenshot 1" /></a>
+									src="images/nextDashDns1.webp" alt="Next Dash DNS Screenshot 1"
+									loading="lazy" /></a>
 							<a href="images/nextDashDns2.webp" data-lightbox="nextdash" class="portrait"><img
-									src="images/nextDashDns2.webp" alt="Next Dash DNS Screenshot 2" /></a>
+									src="images/nextDashDns2.webp" alt="Next Dash DNS Screenshot 2"
+									loading="lazy" /></a>
 						</div>
 						<br>
 						<ul class="actions">
@@ -103,11 +110,14 @@
 					<div class="content">
 						<div class="gallery">
 							<a href="images/topTrailHorse1.webp" data-lightbox="toptrail" class="landscape"><img
-									src="images/topTrailHorse1.webp" alt="Top Trail Horse Screenshot 1" /></a>
+									src="images/topTrailHorse1.webp" alt="Top Trail Horse Screenshot 1"
+									loading="lazy" /></a>
 							<a href="images/topTrailHorse2.webp" data-lightbox="toptrail" class="portrait"><img
-									src="images/topTrailHorse2.webp" alt="Top Trail Horse Screenshot 2" /></a>
+									src="images/topTrailHorse2.webp" alt="Top Trail Horse Screenshot 2"
+									loading="lazy" /></a>
 							<a href="images/topTrailHorse3.webp" data-lightbox="toptrail" class="portrait"><img
-									src="images/topTrailHorse3.webp" alt="Top Trail Horse Screenshot 3" /></a>
+									src="images/topTrailHorse3.webp" alt="Top Trail Horse Screenshot 3"
+									loading="lazy" /></a>
 						</div>
 
 						<br>
@@ -343,13 +353,13 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+	<script defer src="assets/js/jquery.min.js"></script>
+	<script defer src="assets/js/jquery.scrolly.min.js"></script>
+	<script defer src="assets/js/browser.min.js"></script>
+	<script defer src="assets/js/breakpoints.min.js"></script>
+	<script defer src="assets/js/util.js"></script>
+	<script defer src="assets/js/main.js"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 	<script>
 		lightbox.option({
 			'resizeDuration': 200,
