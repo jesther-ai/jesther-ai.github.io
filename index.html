@@ -17,11 +17,26 @@
 	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
 		as="style" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
+	<link rel="preload" href="assets/css/fontawesome-all.min.css" as="style" />
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
 	<style>
 		.button.large.icon:before {
 			font-size: 1em;
 			margin-right: 0.5em;
 			padding-top: 0.5em;
+		}
+
+		/* Optimize font loading */
+		@font-face {
+			font-family: 'Font Awesome 5 Brands';
+			font-display: swap;
+			src: url('assets/webfonts/fa-brands-400.woff2') format('woff2');
+		}
+
+		@font-face {
+			font-family: 'Font Awesome 5 Free';
+			font-display: swap;
+			src: url('assets/webfonts/fa-solid-900.woff2') format('woff2');
 		}
 	</style>
 </head>
