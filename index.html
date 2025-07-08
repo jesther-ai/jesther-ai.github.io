@@ -1,388 +1,976 @@
-<!DOCTYPE HTML>
-<!--
-	Paradigm Shift by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Jesther Silvestre</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<link rel="preload" href="assets/css/main.css" as="style" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
-		as="style" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
-	<link rel="preload" href="assets/css/fontawesome-all.min.css" as="style" />
-	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-	<style>
-		.button.large.icon:before {
-			font-size: 1em;
-			margin-right: 0.5em;
-			padding-top: 0.5em;
-		}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jesther Silvestre - Mobile App Developer Portfolio</title>
+    <meta name="description" content="Professional portfolio of Jesther Silvestre, a skilled Mobile App Developer from the Philippines specializing in Flutter and Swift. Explore my published apps and open-source projects.">
+    <meta name="keywords" content="Jesther Silvestre, Mobile App Developer, Flutter Developer, iOS Developer, Swift, Dart, PHP, SQL, Philippines, Portfolio, App Development">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="assets/css/main.css" as="style">
+    <link rel="preload" href="assets/css/fontawesome-all.min.css" as="style">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    
+    <!-- Custom styles -->
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-dark: #0f172a;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
 
-		/* Optimize font loading */
-		@font-face {
-			font-family: 'Font Awesome 5 Brands';
-			font-display: swap;
-			src: url('assets/webfonts/fa-brands-400.woff2') format('woff2');
-		}
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-dark: #030712;
+            --border-color: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
 
-		@font-face {
-			font-family: 'Font Awesome 5 Free';
-			font-display: swap;
-			src: url('assets/webfonts/fa-solid-900.woff2') format('woff2');
-		}
-	</style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-option {
+            background: transparent;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        .theme-option:hover {
+            color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .theme-option.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .theme-option.active:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="800" cy="400" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="400" cy="800" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-primary);
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+            justify-content: center;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            flex: 0 0 auto;
+            min-width: fit-content;
+        }
+
+        @media (hover: hover) {
+            .skill-item:hover {
+                transform: translateY(-4px);
+                background: var(--primary-color);
+                color: white;
+            }
+
+            .skill-item:hover .skill-icon {
+                color: white;
+            }
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+
+        .skill-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 0;
+            line-height: 1.2;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+            padding: 0 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .contact-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        /* Dark mode adjustments */
+        [data-theme="dark"] .contact {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .contact-title {
+            color: var(--text-primary);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .contact-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+                padding: 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-links {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .project-link {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 1rem;
+            }
+
+            .skill-name {
+                white-space: normal;
+                font-size: 0.9rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 10vw, 3rem);
+            }
+
+            .hero .subtitle {
+                font-size: clamp(1rem, 4vw, 1.4rem);
+            }
+
+            .project-content {
+                padding: 1.25rem;
+            }
+
+            .project-links {
+                gap: 0.5rem;
+            }
+
+            .project-link {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 0.75rem;
+            }
+
+            .skill-item {
+                padding: 1rem 0.5rem;
+                min-height: 100px;
+            }
+
+            .skill-icon {
+                font-size: 2rem;
+            }
+
+            .skill-name {
+                font-size: 0.95rem;
+            }
+
+            .contact-link {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .theme-toggle {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.25rem;
+            }
+
+            .theme-option {
+                width: 2rem;
+                height: 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <script>
+        // Apply theme immediately to prevent flash
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'system';
+            if (savedTheme === 'system') {
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', systemTheme);
+            } else {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+        })();
+    </script>
 </head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-option" data-theme="light" title="Light Mode">
+            <i class="fas fa-sun"></i>
+        </button>
+        <button class="theme-option active" data-theme="system" title="System Default">
+            <i class="fas fa-desktop"></i>
+        </button>
+        <button class="theme-option" data-theme="dark" title="Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
 
-<body class="is-preload">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Jesther Silvestre</h1>
+                <p class="subtitle">Mobile App Developer</p>
+                <p class="description">
+                    A seasoned mobile engineer specializing in building and maintaining high-impact applications with Flutter and Dart.
+                </p>
+                <a href="#projects" class="cta-button">
+                    <i class="fas fa-arrow-down"></i>
+                    View My Work
+                </a>
+            </div>
+        </div>
+    </section>
 
-	<!-- Wrapper -->
-	<div id="wrapper">
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Projects</h2>
+            <p class="section-subtitle animate-on-scroll">
+                A showcase of my mobile development work across personal, professional, and experimental projects
+            </p>
 
-		<!-- Intro -->
-		<section class="intro">
-			<header>
-				<h1>I'm Jesther from Philippines</h1>
-				<p>Mobile App Developer</p>
-				<ul class="actions">
-					<li><a href="#first" class="arrow scrolly"><span class="label">Next</span></a></li>
-				</ul>
-			</header>
-			<div class="content">
-				<span class="image fill" data-position="center"><img src="images/pic03.webp" alt=""
-						loading="eager" /></span>
-			</div>
-		</section>
+            <!-- Personal Projects -->
+            <div class="category-section">
+                <h3 class="category-title animate-on-scroll">Personal Projects</h3>
+                <div class="projects-grid">
+                <!-- Next Dash DNS -->
+                <div class="project-card animate-on-scroll">
+                    <img src="images/nextDashDns3.webp" alt="Next Dash DNS" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Next Dash DNS</h3>
+                        <p class="project-description">
+                            An advanced mobile dashboard for NextDNS, crafted with Flutter for seamless cross-platform experience with real-time monitoring and enhanced insights.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Dart</span>
+                            <span class="tag">Published</span>
+                            <span class="tag">Personal Project</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.nextDashDns.jestherSilvestre" class="project-link" target="_blank">
+                                <i class="fab fa-google-play"></i> Play Store
+                            </a>
+                            <a href="https://apps.apple.com/ph/app/next-dash-dns-nextdns-remote/id6738365453" class="project-link" target="_blank">
+                                <i class="fab fa-apple"></i> App Store
+                            </a>
+                            <a href="https://www.reddit.com/r/nextdns/s/ny030Os6Tw" class="project-link" target="_blank">
+                                <i class="fab fa-reddit"></i> Reddit Discussion
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
 
+            <!-- Professional Projects -->
+            <div class="category-section">
+                <h3 class="category-title animate-on-scroll">Professional Projects</h3>
+                <div class="projects-grid">
 
-		<section>
-			<header>
-				<h2>Published Apps</h2>
-			</header>
-			<div class="content">
+                <!-- Top Trail Horse -->
+                <div class="project-card animate-on-scroll">
+                    <img src="images/topTrailHorse1.webp" alt="Top Trail Horse" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Top Trail Horse</h3>
+                        <p class="project-description">
+                            A Strava-like mobile app for horse riding enthusiasts to track, share, and engage with their rides. Built entirely in Flutter for both iOS and Android.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">GPS Tracking</span>
+                            <span class="tag">Published</span>
+                            <span class="tag">Professional</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.toptrailhorse.toptrailhorseapp" class="project-link" target="_blank">
+                                <i class="fab fa-google-play"></i> Play Store
+                            </a>
+                            <a href="https://apps.apple.com/app/top-trail-horse/id6477813363" class="project-link" target="_blank">
+                                <i class="fab fa-apple"></i> App Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- OH Jobs PH -->
+                <div class="project-card animate-on-scroll">
+                    <img src="images/ohjobs.webp" alt="OH Jobs PH" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">OH Jobs PH</h3>
+                        <p class="project-description">
+                            A job portal that connects employers and Filipinos around the world. Whether in the Philippines or abroad, Oh! Jobs is making hiring opportunities accessible online, helping jobseekers land their dream career.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Published</span>
+                            <span class="tag">Professional</span>
+                            <span class="tag">Job Portal</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.WebOutsourcingGatewayInc.ohjobsph" class="project-link" target="_blank">
+                                <i class="fab fa-google-play"></i> Play Store
+                            </a>
+                            <a href="https://apps.apple.com/us/app/oh-jobs-ph/id1448335544?ls=1" class="project-link" target="_blank">
+                                <i class="fab fa-apple"></i> App Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
 
-				<!-- Next Dash DNS -->
-				<section>
-					<header>
-						<h3>Next Dash DNS</h3>
-						<p>An advanced mobile dashboard for NextDNS, crafted with Flutter to deliver a seamless
-							cross-platform experience. This powerful app provides real-time monitoring of your DNS
-							activities, instantly reflecting changes as they happen. It intelligently stitches
-							historical data with live events, giving you a comprehensive view of your network's security
-							and performance. With enhanced insights and live event tracking, you'll always stay informed
-							about your DNS activities.</p>
-					</header>
-					<div class="content">
-						<div class="gallery">
-							<a href="images/nextDashDns3.webp" data-lightbox="nextdash" class="landscape"><img
-									src="images/nextDashDns3.webp" alt="Next Dash DNS Screenshot 3"
-									loading="lazy" /></a>
-							<a href="images/nextDashDns1.webp" data-lightbox="nextdash" class="portrait"><img
-									src="images/nextDashDns1.webp" alt="Next Dash DNS Screenshot 1"
-									loading="lazy" /></a>
-							<a href="images/nextDashDns2.webp" data-lightbox="nextdash" class="portrait"><img
-									src="images/nextDashDns2.webp" alt="Next Dash DNS Screenshot 2"
-									loading="lazy" /></a>
-						</div>
-						<br>
-						<ul class="actions">
-							<li><a href="https://www.reddit.com/r/nextdns/s/ny030Os6Tw"
-									class="button large icon brands fa-reddit" target="_blank"><span class="text">
-										Reddit
-										Discussion</span></a></li>
-						</ul>
+            <!-- Open Source Projects -->
+            <div class="category-section">
+                <h3 class="category-title animate-on-scroll">Open Source</h3>
+                <div class="projects-grid">
 
-						<ul class="actions">
-							<li><a href="https://play.google.com/store/apps/details?id=com.nextDashDns.jestherSilvestre"
-									class="button large icon brands fa-google-play" target="_blank"><span class="text">
-										Google
-										Play</span></a></li>
-							<li><a href="https://apps.apple.com/ph/app/next-dash-dns-nextdns-remote/id6738365453"
-									class="button large icon brands fa-apple" target="_blank"><span class="text"> App
-										Store</span></a>
-							</li>
-						</ul>
+                <!-- News App -->
+                <div class="project-card animate-on-scroll">
+                    <img src="https://github.com/jesther-ai/News/raw/master/assets/images/sample2.png?raw=true" alt="News App" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">News App</h3>
+                        <p class="project-description">
+                            A clean news reader application built with Flutter that fetches and displays the latest articles from NewsAPI.org with intuitive category browsing.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">REST API</span>
+                            <span class="tag">Open Source</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/jesther-ai/News.git" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-					</div>
-				</section>
+                <!-- Magazine App -->
+                <div class="project-card animate-on-scroll">
+                    <img src="https://raw.githubusercontent.com/jesther-ai/magazine_v1.1/master/screenshot/sampleV2.png" alt="Magazine App" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Magazine App Concept</h3>
+                        <p class="project-description">
+                            A UI/UX concept for a digital magazine store and reader app, designed with Flutter demonstrating e-commerce and content delivery patterns.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Open Source</span>
+                            <span class="tag">Concept</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/jesther-ai/magazine_v1.1" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-				<!-- Top Trail Horse -->
-				<section>
-					<header>
-						<h3>Top Trail Horse</h3>
-						<p>A mobile app for horse riding enthusiasts to track, share, and engage with rides—just like
-							Strava, but for horses! Built entirely in Flutter for a smooth
-							cross-platform experience.</p>
-					</header>
-					<div class="content">
-						<div class="gallery">
-							<a href="images/topTrailHorse1.webp" data-lightbox="toptrail" class="landscape"><img
-									src="images/topTrailHorse1.webp" alt="Top Trail Horse Screenshot 1"
-									loading="lazy" /></a>
-							<a href="images/topTrailHorse2.webp" data-lightbox="toptrail" class="portrait"><img
-									src="images/topTrailHorse2.webp" alt="Top Trail Horse Screenshot 2"
-									loading="lazy" /></a>
-							<a href="images/topTrailHorse3.webp" data-lightbox="toptrail" class="portrait"><img
-									src="images/topTrailHorse3.webp" alt="Top Trail Horse Screenshot 3"
-									loading="lazy" /></a>
-						</div>
+                <!-- COVID Tracker -->
+                <div class="project-card animate-on-scroll">
+                    <img src="images/gallery/fulls/14.webp" alt="COVID-19 Tracker" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">COVID-19 Tracker</h3>
+                        <p class="project-description">
+                            An iOS app developed in Swift 5 that visualizes pandemic data with filterable charts and state-by-state statistics using robust API architecture.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Swift</span>
+                            <span class="tag">iOS</span>
+                            <span class="tag">Open Source</span>
+                            <span class="tag">Data Visualization</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/jesther-ai/super-duper-CovidTracker.git" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-						<br>
-						<ul class="actions">
-							<li><a href="https://play.google.com/store/apps/details?id=com.toptrailhorse.toptrailhorseapp"
-									class="button large icon brands fa-google-play" target="_blank"><span class="text">
-										Google
-										Play</span></a></li>
-							<li><a href="https://apps.apple.com/app/top-trail-horse/id6477813363"
-									class="button large icon brands fa-apple" target="_blank"><span class="text"> App
-										Store</span></a>
-							</li>
-						</ul>
-					</div>
-				</section>
-			</div>
-		</section>
-		<!-- Section to be fiLLLEDDDDDDDD-->
-		<section id="first">
-			<header>
-				<h2>Portfolio</h2>
-			</header>
-			<div class="content">
-				<!-- Section -->
-				<section>
-					<header>
-						<h3>News App</h3>
-						<p>Made by using Flutter,<br> API of http://newsapi.org</p>
-					</header>
-					<div class="content">
-						<div class="gallery">
-							<a href="https://github.com/jesther-ai/News/raw/master/assets/images/sample2.png?raw=true?"
-								data-lightbox="news" class="landscape"><img
-									src="https://github.com/jesther-ai/News/raw/master/assets/images/sample2.png?raw=true?"
-									alt="" /></a>
-							<a href="https://github.com/jesther-ai/News/raw/master/assets/images/sample.gif?raw=true?"
-								data-lightbox="news" class="portrait"><img
-									src="https://github.com/jesther-ai/News/raw/master/assets/images/sample.gif?raw=true"
-									alt="" /></a>
-							<a href="https://github.com/jesther-ai/News/raw/master/assets/images/sample1.gif?raw=true"
-								data-lightbox="news" class="portrait"><img
-									src="https://github.com/jesther-ai/News/raw/master/assets/images/sample1.gif?raw=true"
-									alt="" /></a>
-						</div><br>
-						<ul class="actions">
-							<li><a href="https://github.com/jesther-ai/News.git"
-									class="button large icon brands fa-github" target="_blank"><span class="text">
-										Source
-										Code</span></a></li>
-							<li><a href="#" class="button large">Learn More</a></li>
-						</ul>
-					</div>
-				</section>
+    <!-- Skills Section -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Skills & Expertise</h2>
+            <p class="section-subtitle animate-on-scroll">
+                Technologies and tools I use to bring ideas to life
+            </p>
 
-				<!-- Section -->
-				<!-- Section -->
-				<section>
-					<header>
-						<h3>Magazine App</h3>
-						<p>Made by using Flutter, Mock Up Online Magazine Store</p>
-					</header>
-					<div class="content">
-						<div class="gallery">
-							<a href="https://raw.githubusercontent.com/jesther-ai/magazine_v1.1/master/screenshot/sampleV2.png"
-								data-lightbox="magazine" class="landscape"><img
-									src="https://raw.githubusercontent.com/jesther-ai/magazine_v1.1/master/screenshot/sampleV2.png"
-									alt="" /></a>
-							<a href="https://github.com/jesther-ai/magazine_v1.1/raw/master/screenshot/sampleV1.gif?raw=true"
-								data-lightbox="magazine" class="portrait"><img
-									src="https://github.com/jesther-ai/magazine_v1.1/raw/master/screenshot/sampleV1.gif?raw=true"
-									alt="" /></a>
-							<a href="https://github.com/jesther-ai/magazine_v1.1/raw/master/screenshot/sampleV5.png?raw=true"
-								data-lightbox="magazine" class="portrait"><img
-									src="https://github.com/jesther-ai/magazine_v1.1/raw/master/screenshot/sampleV5.png?raw=true"
-									alt="" /></a>
-						</div><br>
-						<ul class="actions">
-							<li><a href="https://github.com/jesther-ai/magazine_v1.1"
-									class="button large icon brands fa-github" target="_blank"><span class="text">
-										Source
-										Code</span></a></li>
-							<li><a href="#" class="button large">Learn More</a></li>
-						</ul>
-					</div>
-				</section>
+            <div class="skills-grid">
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="skill-name">Flutter</div>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <div class="skill-name">Swift</div>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="skill-name">Dart</div>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="skill-name">PostgreSQL</div>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="skill-name">Firebase</div>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <div class="skill-name">Git</div>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="skill-name">AI-assisted development tools</div>
+                </div>
+            </div>
 
-				<!-- Section -->
-				<!-- Section -->
-				<section>
-					<header>
-						<h3>Meal App</h3>
-						<p>Offers user-friendly, customizable meal plans that you can tailor to your diet while
-							excluding specific foods you don't like. Made by using Flutter</p>
-					</header>
-					<div class="content">
-						<div class="gallery">
-							<a href="images/gallery/fulls/22.webp" data-lightbox="meal" class="landscape"><img
-									src="images/gallery/thumbs/22.webp" alt="" /></a>
-							<a href="https://github.com/jesther-ai/MealApp/raw/master/screenshot/pic1.png"
-								data-lightbox="meal" class="portrait"><img
-									src="https://github.com/jesther-ai/MealApp/raw/master/screenshot/pic1.png"
-									alt="" /></a>
-							<a href="https://github.com/jesther-ai/MealApp/raw/master/screenshot/pic2.png"
-								data-lightbox="meal" class="portrait"><img
-									src="https://github.com/jesther-ai/MealApp/raw/master/screenshot/pic2.png"
-									alt="" /></a>
-						</div><br>
-						<ul class="actions">
-							<li><a href="https://github.com/jesther-ai/MealApp.git"
-									class="button large icon brands fa-github" target="_blank"><span class="text">
-										Source
-										Code</span></a></li>
-							<li><a href="#" class="button large">Learn More</a></li>
-						</ul>
-					</div>
-				</section>
+            <div class="animate-on-scroll" style="margin-top: 3rem; text-align: center;">
+            </div>
+        </div>
+    </section>
 
-				<!-- Section -->
-				<!-- Section -->
-				<section>
-					<header>
-						<h3>Basic covid tracker App</h3>
-						<p>The app will show daily cases, filter by states, and plot graphs. Work with a API and build a
-							solid architecture. Using Swift 5 and Xcode 12.</p>
-					</header>
-					<div class="content">
-						<div class="gallery">
-							<a href="images/gallery/fulls/14.webp" data-lightbox="covid" class="landscape"><img
-									src="images/gallery/thumbs/14.webp" alt="" /></a>
-							<a href="images/gallery/fulls/11.webp" data-lightbox="covid" class="portrait"><img
-									src="images/gallery/thumbs/11.webp" alt="" /></a>
-							<a href="images/gallery/fulls/12.webp" data-lightbox="covid" class="portrait"><img
-									src="images/gallery/thumbs/12.webp" alt="" /></a>
-						</div><br>
-						<ul class="actions">
-							<li><a href="https://github.com/jesther-ai/super-duper-CovidTracker.git"
-									class="button large icon brands fa-github" target="_blank"><span class="text">
-										Source
-										Code</span></a></li>
-							<li><a href="#" class="button large">Learn More</a></li>
-						</ul>
-					</div>
-				</section>
+    <!-- Contact Section -->
+    <section class="section contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="contact-title animate-on-scroll">Let's Work Together</h2>
+                <p class="contact-description animate-on-scroll">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious team. Feel free to connect with me.
+                </p>
+                <div class="contact-links">
+                    <a href="https://github.com/jesther-ai" class="contact-link animate-on-scroll" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/jesthersilvestre" class="contact-link animate-on-scroll" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="mailto:jesthersilvestre@yahoo.com" class="contact-link animate-on-scroll">
+                        <i class="fas fa-envelope"></i> Email Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-				<!-- Section -->
-				<section>
-					<header>
-						<h3>Simple Weather App</h3>
-						<p>iPhone users who like to see a visual representation of upcoming shifts in the weather can
-							give a try. uncluttered Weather App interface</p>
-					</header>
-					<div class="content">
-						<div class="gallery">
-							<a href="images/gallery/fulls/17.webp" data-lightbox="weather" class="landscape"><img
-									src="images/gallery/thumbs/17.webp" alt="" /></a>
-							<a href="images/gallery/fulls/15.webp" data-lightbox="weather" class="portrait"><img
-									src="images/gallery/thumbs/15.webp" alt="" /></a>
-							<a href="images/gallery/fulls/16.webp" data-lightbox="weather" class="portrait"><img
-									src="images/gallery/thumbs/16.webp" alt="" /></a>
-						</div><br>
-						<ul class="actions">
-							<li><a href="https://github.com/jesther-ai/Clima.git"
-									class="button large icon brands fa-github" target="_blank"><span class="text">
-										Source
-										Code</span></a></li>
-							<li><a href="#" class="button large">Learn More</a></li>
-						</ul>
-					</div>
-				</section>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-				<!-- Section -->
-				<section>
-					<header>
-						<h3>Simple Calculator App</h3>
-						<p>Make your calculates with this very basic and simple calculator app</p>
-					</header>
-					<div class="content">
-						<div class="gallery">
-							<a href="images/gallery/fulls/18.webp" data-lightbox="calculator" class="portrait"><img
-									src="images/gallery/thumbs/18.webp" alt="" /></a>
-							<a href="images/gallery/fulls/19.webp" data-lightbox="calculator" class="portrait"><img
-									src="images/gallery/thumbs/19.webp" alt="" /></a>
-							<a href="images/gallery/fulls/20.webp" data-lightbox="calculator" class="landscape"><img
-									src="images/gallery/thumbs/20.webp" alt="" /></a>
-						</div><br>
-						<ul class="actions">
-							<li><a href="https://github.com/jesther-ai/Simple-Calculator.git"
-									class="button large icon brands fa-github" target="_blank"><span class="text">
-										Source
-										Code</span></a></li>
-							<li><a href="#" class="button large">Learn More</a></li>
-						</ul>
-					</div>
-				</section>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-			</div>
-		</section>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
 
-		<!-- Section to be fiLLLEDDDDDDDD-->
-		<section>
-			<header>
-				<h2>A self-confessed geek </h2>
-			</header>
-			<div class="content">
-				<p><strong>I have been using Apple products</strong> for over a decade and I am hugely passionate about
-					iOS development. </p>
-				<ul class="feature-icons">
-					<li class="icon solid fa-code">Swift</li>
-					<li class="icon solid fa-code">PHP</li>
-					<li class="icon solid fa-code">Flutter</li>
-					<li class="icon solid fa-code">Dart</li>
-					<li class="icon solid fa-code">Git</li>
-					<li class="icon solid fa-code">SQL</li>
-				</ul>
-				<p>I also enjoy building, creating, and maintaining websites. It includes aspects such as web design,
-					web publishing, web programming, and database management. </p>
-			</div>
-		</section>
-		<!-- Section -->
-		<section>
-			<header>
-				<h2>Personal Background</h2>
-			</header>
-			<div class="content">
-				<p><strong>Currently learning everything.</strong> I do content on Design and Development. I really
-					enjoy learning languages and frameworks like Flutter, as well as work in WordPress. Currently
-					Learning iOS Development (natively)</p>
-				<span class="image main"><img src="images/pic05.webp" alt="" /></span>
-			</div>
-		</section>
-		<div class="copyright">&copy;All rights reserved.</div>
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
 
-	</div>
+        // Lightbox configuration
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'fadeDuration': 300
+        });
 
-	<!-- Scripts -->
-	<script defer src="assets/js/jquery.min.js"></script>
-	<script defer src="assets/js/jquery.scrolly.min.js"></script>
-	<script defer src="assets/js/browser.min.js"></script>
-	<script defer src="assets/js/breakpoints.min.js"></script>
-	<script defer src="assets/js/util.js"></script>
-	<script defer src="assets/js/main.js"></script>
-	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-	<script>
-		lightbox.option({
-			'resizeDuration': 200,
-			'wrapAround': true,
-			'fadeDuration': 300
-		})
-	</script>
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const html = document.documentElement;
 
+        // Get saved theme or default to system
+        const savedTheme = localStorage.getItem('theme') || 'system';
+        
+        // Apply theme on page load
+        function applyTheme(theme) {
+            if (theme === 'system') {
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                html.setAttribute('data-theme', systemTheme);
+            } else {
+                html.setAttribute('data-theme', theme);
+            }
+        }
+
+        // Set active theme button
+        function setActiveTheme(theme) {
+            themeOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.theme === theme) {
+                    option.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize theme
+        applyTheme(savedTheme);
+        setActiveTheme(savedTheme);
+
+        // Theme toggle event listeners
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.dataset.theme;
+                localStorage.setItem('theme', theme);
+                applyTheme(theme);
+                setActiveTheme(theme);
+            });
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (localStorage.getItem('theme') === 'system') {
+                applyTheme('system');
+            }
+        });
+    </script>
 </body>
-
 </html>
