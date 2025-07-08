@@ -137,7 +137,7 @@
         .theme-option {
             background: transparent;
             border: none;
-            padding: 0.4rem;
+            padding: 0;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -148,6 +148,14 @@
             transition: all 0.3s ease;
             width: 2.2rem;
             height: 2.2rem;
+            position: relative;
+        }
+
+        .theme-option i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .theme-option:hover {
@@ -358,12 +366,24 @@
         }
 
         /* Skills Section */
+        .skill-category {
+            margin-bottom: 3rem;
+        }
+
+        .skill-category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: left;
+        }
+
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 3rem;
-            justify-content: center;
+            gap: 1.5rem;
+            justify-content: flex-start;
+            align-items: flex-start;
         }
 
         .skill-item {
@@ -459,6 +479,30 @@
             color: white;
         }
 
+        /* Theme toggle visibility fixes for dark themes */
+        [data-theme="dark"] .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        [data-theme="dark"] .theme-option {
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .theme-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        [data-theme="dark"] .theme-option.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
         .contact-links {
             display: flex;
             justify-content: center;
@@ -492,8 +536,8 @@
             }
 
             .skills-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+                justify-content: flex-start;
+                align-items: flex-start;
                 gap: 1.5rem;
             }
 
@@ -534,8 +578,8 @@
             }
 
             .skills-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                justify-content: flex-start;
+                align-items: flex-start;
                 gap: 1rem;
             }
 
@@ -580,8 +624,8 @@
             }
 
             .skills-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                justify-content: flex-start;
+                align-items: flex-start;
                 gap: 0.75rem;
             }
 
@@ -623,7 +667,7 @@
                 width: 1.8rem;
                 height: 1.8rem;
                 font-size: 0.9rem;
-                padding: 0.3rem;
+                padding: 0;
             }
         }
 
@@ -884,48 +928,85 @@
                 Technologies and tools I use to bring ideas to life
             </p>
 
-            <div class="skills-grid">
-                <div class="skill-item animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-mobile-alt"></i>
+            <!-- Languages Section -->
+            <div class="skill-category animate-on-scroll">
+                <h4 class="skill-category-title">Languages</h4>
+                <div class="skills-grid">
+                    <div class="skill-item animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <div class="skill-name">Swift</div>
                     </div>
-                    <div class="skill-name">Flutter</div>
+                    <div class="skill-item animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="skill-name">Dart</div>
+                    </div>
                 </div>
-                <div class="skill-item animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fab fa-apple"></i>
+            </div>
+
+            <!-- Frameworks Section -->
+            <div class="skill-category animate-on-scroll">
+                <h4 class="skill-category-title">Frameworks</h4>
+                <div class="skills-grid">
+                    <div class="skill-item animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="skill-name">Flutter</div>
                     </div>
-                    <div class="skill-name">Swift</div>
                 </div>
-                <div class="skill-item animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
+            </div>
+
+            <!-- Databases Section -->
+            <div class="skill-category animate-on-scroll">
+                <h4 class="skill-category-title">Databases</h4>
+                <div class="skills-grid">
+                    <div class="skill-item animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="skill-name">PostgreSQL</div>
                     </div>
-                    <div class="skill-name">Dart</div>
+                    <div class="skill-item animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="skill-name">Firebase</div>
+                    </div>
                 </div>
-                <div class="skill-item animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-database"></i>
+            </div>
+
+            <!-- Tooling & Version Control Section -->
+            <div class="skill-category animate-on-scroll">
+                <h4 class="skill-category-title">Tooling & Version Control</h4>
+                <div class="skills-grid">
+                    <div class="skill-item animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <div class="skill-name">Git</div>
                     </div>
-                    <div class="skill-name">PostgreSQL</div>
-                </div>
-                <div class="skill-item animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-fire"></i>
+                    <div class="skill-item animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="skill-name">CI/CD (GitHub Actions)</div>
                     </div>
-                    <div class="skill-name">Firebase</div>
-                </div>
-                <div class="skill-item animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fab fa-git-alt"></i>
+                    <div class="skill-item animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="skill-name">Codemagic</div>
                     </div>
-                    <div class="skill-name">Git</div>
-                </div>
-                <div class="skill-item animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-robot"></i>
+                    <div class="skill-item animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="skill-name">AI-assisted Refactoring</div>
                     </div>
-                    <div class="skill-name">AI-assisted development tools</div>
                 </div>
             </div>
 
