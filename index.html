@@ -783,6 +783,9 @@
                             <a href="https://www.reddit.com/r/nextdns/s/ny030Os6Tw" class="project-link" target="_blank">
                                 <i class="fab fa-reddit"></i> Reddit Discussion
                             </a>
+                            <a href="#" class="project-link" onclick="openPreview('next-dash-dns', 'Next Dash DNS', 'An advanced mobile dashboard for NextDNS, crafted with Flutter for seamless cross-platform experience with real-time monitoring and enhanced insights.', ['Flutter', 'Dart', 'Published', 'Personal Project'], this.parentElement); return false;">
+                                <i class="fas fa-desktop"></i> Preview
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -815,6 +818,9 @@
                             <a href="https://apps.apple.com/app/top-trail-horse/id6477813363" class="project-link" target="_blank">
                                 <i class="fab fa-apple"></i> App Store
                             </a>
+                            <a href="#" class="project-link" onclick="openPreview('top-trail-horse', 'Top Trail Horse', 'A Strava-like mobile app for horse riding enthusiasts to track, share, and engage with their rides. Built entirely in Flutter for both iOS and Android.', ['Flutter', 'GPS Tracking', 'Published', 'Professional'], this.parentElement); return false;">
+                                <i class="fas fa-desktop"></i> Preview
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -839,6 +845,9 @@
                             </a>
                             <a href="https://apps.apple.com/us/app/oh-jobs-ph/id1448335544?ls=1" class="project-link" target="_blank">
                                 <i class="fab fa-apple"></i> App Store
+                            </a>
+                            <a href="#" class="project-link" onclick="openPreview('oh-jobs-ph', 'OH Jobs PH', 'A job portal that connects employers and Filipinos around the world. Whether in the Philippines or abroad, Oh! Jobs is making hiring opportunities accessible online, helping jobseekers land their dream career.', ['Flutter', 'Published', 'Professional', 'Job Portal'], this.parentElement); return false;">
+                                <i class="fas fa-desktop"></i> Preview
                             </a>
                         </div>
                     </div>
@@ -868,6 +877,9 @@
                             <a href="https://github.com/jesther-ai/News.git" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> Source Code
                             </a>
+                            <a href="#" class="project-link" onclick="openPreview('news-app', 'News App', 'A clean news reader application built with Flutter that fetches and displays the latest articles from NewsAPI.org with intuitive category browsing.', ['Flutter', 'REST API', 'Open Source'], this.parentElement); return false;">
+                                <i class="fas fa-desktop"></i> Preview
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -889,6 +901,9 @@
                         <div class="project-links">
                             <a href="https://github.com/jesther-ai/magazine_v1.1" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> Source Code
+                            </a>
+                            <a href="#" class="project-link" onclick="openPreview('magazine-app', 'Magazine App Concept', 'A UI/UX concept for a digital magazine store and reader app, designed with Flutter demonstrating e-commerce and content delivery patterns.', ['Flutter', 'UI/UX', 'Open Source', 'Concept'], this.parentElement); return false;">
+                                <i class="fas fa-desktop"></i> Preview
                             </a>
                         </div>
                     </div>
@@ -1045,10 +1060,16 @@
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
 
@@ -1124,6 +1145,333 @@
             if (localStorage.getItem('theme') === 'system') {
                 applyTheme('system');
             }
+        });
+    </script>
+
+    <!-- Preview Modal -->
+    <div id="preview-modal" class="preview-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <h2 class="modal-title"></h2>
+                    <p class="modal-description"></p>
+                    <div class="modal-tags"></div>
+                    <div class="modal-links"></div>
+                </div>
+                <div class="modal-right">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <iframe class="preview-iframe" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Modal Styles */
+        .preview-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: var(--bg-primary);
+            margin: 2% auto;
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            color: var(--text-secondary);
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            display: flex;
+            height: 100%;
+            padding: 40px;
+            gap: 40px;
+        }
+
+        .modal-left {
+            flex: 0 0 40%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .modal-tags .tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .modal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-links .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .modal-links .project-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .modal-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phone-frame {
+            position: relative;
+            width: 375px;
+            height: 812px;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background: #1a1a1a;
+            border-radius: 0 0 20px 20px;
+            z-index: 1;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            background: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .modal-body {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .modal-left {
+                flex: none;
+                padding: 10px;
+                max-height: 40%;
+            }
+
+            .modal-title {
+                font-size: 1.8rem;
+            }
+
+            .phone-frame {
+                width: 300px;
+                height: 650px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+
+            .close-modal {
+                right: 15px;
+                top: 10px;
+            }
+
+            .modal-body {
+                padding: 15px;
+                gap: 20px;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-description {
+                font-size: 1rem;
+            }
+
+            .phone-frame {
+                width: 100%;
+                max-width: 320px;
+                height: 568px;
+            }
+
+            .phone-notch {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Loading State */
+        .preview-iframe.loading {
+            background: var(--bg-secondary) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" stroke="%236366f1" stroke-width="4" fill="none" stroke-dasharray="164.93361431346415 56.97787143782138"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform></circle></svg>') center no-repeat;
+            background-size: 60px;
+        }
+    </style>
+
+    <script>
+        // Preview Modal Functions
+        function openPreview(projectId, title, description, tags, linksElement) {
+            const modal = document.getElementById('preview-modal');
+            const modalTitle = modal.querySelector('.modal-title');
+            const modalDescription = modal.querySelector('.modal-description');
+            const modalTags = modal.querySelector('.modal-tags');
+            const modalLinks = modal.querySelector('.modal-links');
+            const iframe = modal.querySelector('.preview-iframe');
+            
+            // Set content
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            
+            // Set tags
+            modalTags.innerHTML = '';
+            tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'tag';
+                tagElement.textContent = tag;
+                modalTags.appendChild(tagElement);
+            });
+            
+            // Copy existing links (except preview button)
+            modalLinks.innerHTML = '';
+            const existingLinks = linksElement.querySelectorAll('.project-link');
+            existingLinks.forEach(link => {
+                if (!link.textContent.includes('Preview')) {
+                    modalLinks.appendChild(link.cloneNode(true));
+                }
+            });
+            
+            // Set iframe source with loading state
+            iframe.classList.add('loading');
+            iframe.src = `docs/flutter-apps/${projectId}/index.html`;
+            iframe.onload = function() {
+                iframe.classList.remove('loading');
+            };
+            
+            // Show modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal function
+        function closePreviewModal() {
+            const modal = document.getElementById('preview-modal');
+            const iframe = modal.querySelector('.preview-iframe');
+            
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Clear iframe source
+            setTimeout(() => {
+                iframe.src = '';
+            }, 300);
+        }
+
+        // Modal event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('preview-modal');
+            const closeBtn = modal.querySelector('.close-modal');
+            
+            // Close on X click
+            closeBtn.onclick = closePreviewModal;
+            
+            // Close on outside click
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    closePreviewModal();
+                }
+            };
+            
+            // Close on ESC key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && modal.style.display === 'block') {
+                    closePreviewModal();
+                }
+            });
         });
     </script>
 </body>
