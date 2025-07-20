@@ -818,6 +818,9 @@
                             <a href="https://apps.apple.com/app/top-trail-horse/id6477813363" class="project-link" target="_blank">
                                 <i class="fab fa-apple"></i> App Store
                             </a>
+                            <a href="#" class="project-link" onclick="openPreview('top-trail-horse', 'Top Trail Horse', 'A Strava-like mobile app for horse riding enthusiasts to track, share, and engage with their rides. Built entirely in Flutter for both iOS and Android, featuring GPS tracking, ride analytics, and social features for the equestrian community.', ['Flutter', 'GPS Tracking', 'Published', 'Professional'], this.parentElement); return false;">
+                                <i class="fas fa-desktop"></i> Preview
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1612,9 +1615,11 @@
             
             // Set iframe source with loading state
             iframe.classList.add('loading');
-            // Use Firebase URL for Next Dash DNS, local path for others
+            // Use Firebase URL for Next Dash DNS and Top Trail Horse, local path for others
             if (projectId === 'next-dash-dns') {
                 iframe.src = 'https://next-dash-dns.web.app';
+            } else if (projectId === 'top-trail-horse') {
+                iframe.src = 'https://toptrailhorse-e66e1.web.app';
             } else {
                 iframe.src = `docs/flutter-apps/${projectId}/index.html`;
             }
