@@ -1558,6 +1558,8 @@
 
     <script>
         // Preview Modal Functions
+        let savedScrollPosition = 0;
+        
         function openPreview(projectId, title, description, tags, linksElement) {
             const modal = document.getElementById('preview-modal');
             const modalTitle = modal.querySelector('.modal-title');
@@ -1609,10 +1611,14 @@
             };
             
             // Show modal
+            // Save current scroll position
+            savedScrollPosition = window.scrollY || document.documentElement.scrollTop;
+            
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
             document.body.style.position = 'fixed';
             document.body.style.width = '100%';
+            document.body.style.top = `-${savedScrollPosition}px`;
         }
 
         // Close modal function
@@ -1624,6 +1630,10 @@
             document.body.style.overflow = 'auto';
             document.body.style.position = '';
             document.body.style.width = '';
+            document.body.style.top = '';
+            
+            // Restore scroll position
+            window.scrollTo(0, savedScrollPosition);
             
             // Clear iframe source
             setTimeout(() => {
