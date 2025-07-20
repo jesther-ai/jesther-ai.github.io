@@ -818,9 +818,6 @@
                             <a href="https://apps.apple.com/app/top-trail-horse/id6477813363" class="project-link" target="_blank">
                                 <i class="fab fa-apple"></i> App Store
                             </a>
-                            <a href="#" class="project-link" onclick="openPreview('top-trail-horse', 'Top Trail Horse', 'A Strava-like mobile app for horse riding enthusiasts to track, share, and engage with their rides. Built entirely in Flutter for both iOS and Android.', ['Flutter', 'GPS Tracking', 'Published', 'Professional'], this.parentElement); return false;">
-                                <i class="fas fa-desktop"></i> Preview
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -845,9 +842,6 @@
                             </a>
                             <a href="https://apps.apple.com/us/app/oh-jobs-ph/id1448335544?ls=1" class="project-link" target="_blank">
                                 <i class="fab fa-apple"></i> App Store
-                            </a>
-                            <a href="#" class="project-link" onclick="openPreview('oh-jobs-ph', 'OH Jobs PH', 'A job portal that connects employers and Filipinos around the world. Whether in the Philippines or abroad, Oh! Jobs is making hiring opportunities accessible online, helping jobseekers land their dream career.', ['Flutter', 'Published', 'Professional', 'Job Portal'], this.parentElement); return false;">
-                                <i class="fas fa-desktop"></i> Preview
                             </a>
                         </div>
                     </div>
@@ -877,9 +871,6 @@
                             <a href="https://github.com/jesther-ai/News.git" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> Source Code
                             </a>
-                            <a href="#" class="project-link" onclick="openPreview('news-app', 'News App', 'A clean news reader application built with Flutter that fetches and displays the latest articles from NewsAPI.org with intuitive category browsing.', ['Flutter', 'REST API', 'Open Source'], this.parentElement); return false;">
-                                <i class="fas fa-desktop"></i> Preview
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -901,9 +892,6 @@
                         <div class="project-links">
                             <a href="https://github.com/jesther-ai/magazine_v1.1" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> Source Code
-                            </a>
-                            <a href="#" class="project-link" onclick="openPreview('magazine-app', 'Magazine App Concept', 'A UI/UX concept for a digital magazine store and reader app, designed with Flutter demonstrating e-commerce and content delivery patterns.', ['Flutter', 'UI/UX', 'Open Source', 'Concept'], this.parentElement); return false;">
-                                <i class="fas fa-desktop"></i> Preview
                             </a>
                         </div>
                     </div>
@@ -1154,10 +1142,17 @@
             <span class="close-modal">&times;</span>
             <div class="modal-body">
                 <div class="modal-left">
-                    <h2 class="modal-title"></h2>
-                    <p class="modal-description"></p>
-                    <div class="modal-tags"></div>
-                    <div class="modal-links"></div>
+                    <div class="modal-header">
+                        <h2 class="modal-title"></h2>
+                        <button class="toggle-description" aria-label="Toggle description">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="modal-info">
+                        <p class="modal-description"></p>
+                        <div class="modal-tags"></div>
+                        <div class="modal-links"></div>
+                    </div>
                 </div>
                 <div class="modal-right">
                     <div class="phone-frame">
@@ -1181,6 +1176,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             animation: fadeIn 0.3s ease;
+            overflow-y: auto;
         }
 
         .modal-content {
@@ -1190,10 +1186,13 @@
             width: 90%;
             max-width: 1200px;
             height: 90vh;
+            min-height: 600px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
             animation: slideUp 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .close-modal {
@@ -1214,21 +1213,72 @@
 
         .modal-body {
             display: flex;
-            height: 100%;
+            flex: 1;
             padding: 40px;
             gap: 40px;
+            overflow: hidden;
         }
 
         .modal-left {
             flex: 0 0 40%;
             padding: 20px;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
         }
 
         .modal-title {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin: 0;
             color: var(--text-primary);
+            flex: 1;
+        }
+
+        .toggle-description {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+            padding: 0;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-description:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .toggle-description i {
+            transition: transform 0.3s ease;
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .toggle-description.collapsed i {
+            transform: rotate(-90deg);
+        }
+
+        .modal-info {
+            transition: all 0.3s ease;
+        }
+
+        .modal-info.collapsed {
+            display: none;
         }
 
         .modal-description {
@@ -1278,16 +1328,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
+            min-height: 0;
+            overflow: hidden;
         }
 
         .phone-frame {
             position: relative;
-            width: 375px;
-            height: 812px;
+            width: 100%;
+            max-width: 375px;
+            height: 100%;
+            max-height: 812px;
             background: #1a1a1a;
             border-radius: 40px;
             padding: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
         }
 
         .phone-notch {
@@ -1307,6 +1364,7 @@
             height: 100%;
             border-radius: 30px;
             background: white;
+            flex: 1;
         }
 
         /* Responsive Design */
@@ -1319,16 +1377,22 @@
             .modal-left {
                 flex: none;
                 padding: 10px;
-                max-height: 40%;
+                max-height: 30%;
+                min-height: 150px;
             }
 
             .modal-title {
                 font-size: 1.8rem;
             }
 
+            .modal-right {
+                flex: 1;
+                padding: 10px;
+            }
+
             .phone-frame {
-                width: 300px;
-                height: 650px;
+                max-width: 350px;
+                max-height: 700px;
             }
         }
 
@@ -1338,34 +1402,133 @@
                 width: 100%;
                 height: 100%;
                 border-radius: 0;
+                min-height: 100vh;
             }
 
             .close-modal {
                 right: 15px;
                 top: 10px;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                z-index: 1001;
             }
 
             .modal-body {
-                padding: 15px;
-                gap: 20px;
+                padding: 60px 15px 15px;
+                gap: 15px;
+                flex-direction: column;
+            }
+
+            .modal-left {
+                max-height: auto;
+                min-height: auto;
+                padding: 0;
+                flex: none;
+            }
+
+            .toggle-description {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .modal-header {
+                margin-bottom: 0.5rem;
             }
 
             .modal-title {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
 
             .modal-description {
-                font-size: 1rem;
+                font-size: 0.9rem;
+                line-height: 1.4;
+                margin-bottom: 1rem;
+            }
+
+            .modal-tags {
+                gap: 0.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .modal-tags .tag {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .modal-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .modal-links .project-link {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.8rem;
+                background: var(--bg-secondary);
+                border-radius: 20px;
+            }
+
+            .modal-right {
+                flex: 1;
+                padding: 0;
+                width: 100%;
             }
 
             .phone-frame {
+                max-width: none;
+                max-height: none;
                 width: 100%;
-                max-width: 320px;
-                height: 568px;
+                height: 100%;
+                background: transparent;
+                border-radius: 0;
+                padding: 0;
+                box-shadow: none;
             }
 
             .phone-notch {
                 display: none;
+            }
+
+            .preview-iframe {
+                border-radius: 0;
+                border: 1px solid var(--border-color);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-body {
+                padding: 50px 10px 10px;
+                gap: 10px;
+            }
+
+            .modal-left {
+                max-height: 30%;
+            }
+
+            .modal-title {
+                font-size: 1.2rem;
+            }
+
+            .modal-description {
+                font-size: 0.85rem;
+            }
+
+
+            .modal-tags .tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.5rem;
+            }
+
+            .modal-links .project-link {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.6rem;
             }
         }
 
@@ -1402,6 +1565,7 @@
             const modalTags = modal.querySelector('.modal-tags');
             const modalLinks = modal.querySelector('.modal-links');
             const iframe = modal.querySelector('.preview-iframe');
+            const phoneFrame = modal.querySelector('.phone-frame');
             
             // Set content
             modalTitle.textContent = title;
@@ -1425,9 +1589,21 @@
                 }
             });
             
+            
+            // Reset description toggle
+            const toggleBtn = modal.querySelector('.toggle-description');
+            const modalInfo = modal.querySelector('.modal-info');
+            toggleBtn.classList.remove('collapsed');
+            modalInfo.classList.remove('collapsed');
+            
             // Set iframe source with loading state
             iframe.classList.add('loading');
-            iframe.src = `docs/flutter-apps/${projectId}/index.html`;
+            // Use Firebase URL for Next Dash DNS, local path for others
+            if (projectId === 'next-dash-dns') {
+                iframe.src = 'https://next-dash-dns.web.app';
+            } else {
+                iframe.src = `docs/flutter-apps/${projectId}/index.html`;
+            }
             iframe.onload = function() {
                 iframe.classList.remove('loading');
             };
@@ -1455,6 +1631,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('preview-modal');
             const closeBtn = modal.querySelector('.close-modal');
+            const toggleBtn = modal.querySelector('.toggle-description');
+            const modalInfo = modal.querySelector('.modal-info');
             
             // Close on X click
             closeBtn.onclick = closePreviewModal;
@@ -1471,6 +1649,32 @@
                 if (event.key === 'Escape' && modal.style.display === 'block') {
                     closePreviewModal();
                 }
+            });
+            
+            // Toggle description
+            toggleBtn.addEventListener('click', function() {
+                toggleBtn.classList.toggle('collapsed');
+                modalInfo.classList.toggle('collapsed');
+            });
+            
+            // Auto-expand description when moving to larger screens
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function() {
+                    // Check if modal is visible
+                    if (modal.style.display === 'block') {
+                        // Check if toggle button is hidden (larger screen)
+                        const toggleBtnStyle = window.getComputedStyle(toggleBtn);
+                        if (toggleBtnStyle.display === 'none') {
+                            // Auto-expand if currently collapsed
+                            if (toggleBtn.classList.contains('collapsed')) {
+                                toggleBtn.classList.remove('collapsed');
+                                modalInfo.classList.remove('collapsed');
+                            }
+                        }
+                    }
+                }, 250); // Debounce resize events
             });
         });
     </script>
