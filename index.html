@@ -783,7 +783,7 @@
                             <a href="https://www.reddit.com/r/nextdns/s/ny030Os6Tw" class="project-link" target="_blank">
                                 <i class="fab fa-reddit"></i> Reddit Discussion
                             </a>
-                            <a href="#" class="project-link" onclick="openPreview('next-dash-dns', 'Next Dash DNS', 'An advanced mobile dashboard for NextDNS, crafted with Flutter for seamless cross-platform experience with real-time monitoring and enhanced insights.', ['Flutter', 'Dart', 'Published', 'Personal Project'], this.parentElement); return false;">
+                            <a href="#" class="project-link" onclick="openPreview('next-dash-dns', 'Next Dash DNS', 'An advanced mobile dashboard for NextDNS, crafted with Flutter for seamless cross-platform experience. Features real-time DNS log streaming using Server-Sent Events (SSE), allowing you to monitor your DNS queries live as they happen, with enhanced insights and real-time monitoring capabilities.', ['Flutter', 'Dart', 'Published', 'Personal Project'], this.parentElement); return false;">
                                 <i class="fas fa-desktop"></i> Preview
                             </a>
                         </div>
@@ -1559,8 +1559,11 @@
     <script>
         // Preview Modal Functions
         let savedScrollPosition = 0;
+        let userHasManuallyToggled = false;
         
         function openPreview(projectId, title, description, tags, linksElement) {
+            // Reset user preference when opening modal
+            userHasManuallyToggled = false;
             const modal = document.getElementById('preview-modal');
             const modalTitle = modal.querySelector('.modal-title');
             const modalDescription = modal.querySelector('.modal-description');
@@ -1592,11 +1595,20 @@
             });
             
             
-            // Reset description toggle
+            // Reset description toggle based on screen size
             const toggleBtn = modal.querySelector('.toggle-description');
             const modalInfo = modal.querySelector('.modal-info');
-            toggleBtn.classList.remove('collapsed');
-            modalInfo.classList.remove('collapsed');
+            
+            // Check if we're on mobile screen
+            if (window.innerWidth <= 768) {
+                // Auto-collapse on mobile
+                toggleBtn.classList.add('collapsed');
+                modalInfo.classList.add('collapsed');
+            } else {
+                // Show expanded on larger screens
+                toggleBtn.classList.remove('collapsed');
+                modalInfo.classList.remove('collapsed');
+            }
             
             // Set iframe source with loading state
             iframe.classList.add('loading');
@@ -1665,24 +1677,39 @@
                 }
             });
             
+            // Track user manual toggle preference (moved to global scope)
+            let lastScreenSize = window.innerWidth > 768 ? 'large' : 'small';
+            
             // Toggle description
             toggleBtn.addEventListener('click', function() {
                 toggleBtn.classList.toggle('collapsed');
                 modalInfo.classList.toggle('collapsed');
+                userHasManuallyToggled = true;
             });
             
-            // Auto-expand description when moving to larger screens
+            // Handle responsive behavior on resize
             let resizeTimeout;
             window.addEventListener('resize', function() {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(function() {
                     // Check if modal is visible
                     if (modal.style.display === 'block') {
-                        // Check if toggle button is hidden (larger screen)
-                        const toggleBtnStyle = window.getComputedStyle(toggleBtn);
-                        if (toggleBtnStyle.display === 'none') {
-                            // Auto-expand if currently collapsed
-                            if (toggleBtn.classList.contains('collapsed')) {
+                        const currentScreenSize = window.innerWidth > 768 ? 'large' : 'small';
+                        
+                        // If screen size category changed, reset user preference
+                        if (currentScreenSize !== lastScreenSize) {
+                            userHasManuallyToggled = false;
+                            lastScreenSize = currentScreenSize;
+                        }
+                        
+                        // Only auto-adjust if user hasn't manually toggled
+                        if (!userHasManuallyToggled) {
+                            if (currentScreenSize === 'small') {
+                                // Auto-collapse on mobile
+                                toggleBtn.classList.add('collapsed');
+                                modalInfo.classList.add('collapsed');
+                            } else {
+                                // Auto-expand on larger screens
                                 toggleBtn.classList.remove('collapsed');
                                 modalInfo.classList.remove('collapsed');
                             }
